@@ -11,7 +11,7 @@ quantities of main memory? How would you solve it if you could use several
 external "scratch" files but only a few hundred bytes of main memory?
 Complexity: TODO
 Usage:
-    2.2pp randomints
+    2.2pp genrandom
     2.2pp run <input>
 '''
 
@@ -83,7 +83,10 @@ def answer(infile, positions):
             scratch = '{0}.{1}.txt'.format(score.index(min(score)), i+1)
         else:
             # when score minimum reaches zero
+            # NOTE: Under Construction: Not currently stable
             return (score.index(min(score)) << (positions-1-i)) & int(number)
+
+    return 'No Integers in range(0, 2^{0}) missing.'.format(positions)
 
 
 # executable
@@ -96,7 +99,7 @@ if __name__ == '__main__':
     args = docopt(__doc__)
 
     # flow
-    if args['randomints']:
+    if args['genrandom']:
         # gen random 32bit integers
         genrandom(4)
 
